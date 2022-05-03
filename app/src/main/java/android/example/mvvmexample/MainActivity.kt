@@ -1,5 +1,6 @@
 package android.example.mvvmexample
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -48,15 +49,19 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    @SuppressLint("NotifyDataSetChanged")
     fun addData(){
-        var txtplce = findViewById<EditText>(R.id.titletxt)
-        var title=txtplce.text.toString()
-        if(title.isNullOrBlank()){
+        val txtplce = findViewById<EditText>(R.id.titletxt)
+        val txtplacetwo = findViewById<EditText>(R.id.contenttxt)
+        val title = txtplce.text.toString()
+        val content = txtplacetwo.text.toString()
+        if(title.isBlank()){
             Toast.makeText(this,"Enter value!",Toast.LENGTH_LONG).show()
         }else{
-            var blog= Blog(title)
+            val blog= Blog(title, content)
             viewModel.add(blog)
             txtplce.text.clear()
+            txtplacetwo.text.clear()
             mainrecycler.adapter?.notifyDataSetChanged()
         }
 

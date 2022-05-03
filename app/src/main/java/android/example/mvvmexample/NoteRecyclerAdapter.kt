@@ -43,6 +43,7 @@ class NoteRecyclerAdapter(val viewModel: MainViewModel, val arrayList: ArrayList
         fun bind(blog: Blog){
 
             binding.blogTitle.text = blog.title
+            binding.blogContent.text = blog.content
             binding.deleteBtn.setOnClickListener {
                 viewModel.remove(blog)
                 notifyItemRemoved(arrayList.indexOf(blog))
